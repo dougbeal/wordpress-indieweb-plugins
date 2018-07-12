@@ -1,19 +1,16 @@
-*.log
-wp-config.php
-wp-content/advanced-cache.php
-wp-content/backup-db/
-wp-content/backups/
-wp-content/blogs.dir/
-wp-content/cache/
-wp-content/upgrade/
-wp-content/uploads/
-wp-content/mu-plugins/
-wp-content/wp-cache-config.php
-wp-content/plugins/hello.php
+# ignore non-tracked plugins
+# https://stackoverflow.com/questions/1248570/how-do-i-tell-git-to-ignore-everything-except-a-subdirectory
 
-/.htaccess
-/license.txt
-/readme.html
-/sitemap.xml
-/sitemap.xml.gz
-
+*
+!/bridy-publish
+!/indieauth
+!/indieweb
+!/indieweb-post-kinds
+!/indieweb-press-this
+!/micropub
+!/semantic-linkbacks
+!/simple-location
+!/syndication-links
+!/webmention
+!*.gitignore
+!*.gitmodule

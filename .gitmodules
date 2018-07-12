@@ -1,0 +1,27 @@
+[submodule "indieweb"]
+	path = indieweb
+	url = https://github.com/indieweb/wordpress-indieweb.git
+[submodule "indieweb-post-kinds"]
+	path = indieweb-post-kinds
+	url = https://github.com/dshanske/indieweb-post-kinds.git
+[submodule "indieauth"]
+	path = indieauth
+	url = https://github.com/indieweb/wordpress-indieauth
+[submodule "indieweb-press-this"]
+	path = indieweb-press-this
+	url = https://github.com/indieweb/wordpress-indieweb-press-this
+[submodule "micropub"]
+	path = micropub
+	url = https://github.com/snarfed/wordpress-micropub.git
+[submodule "semantic-linkbacks"]
+	path = semantic-linkbacks
+	url = https://github.com/pfefferle/wordpress-semantic-linkbacks.git
+[submodule "simple-location"]
+	path = simple-location
+	url = https://github.com/dshanske/simple-location.git
+[submodule "syndication-links"]
+	path = syndication-links
+	url = https://github.com/dshanske/syndication-links.git
+[submodule "webmention"]
+	path = webmention
+	url = https://github.com/pfefferle/wordpress-webmention.git
