@@ -12,3 +12,6 @@ git checkout -b ${BRANCHNAME}
 
 # fork each indieweb plugin to your account
 git submodule foreach hub fork ${ORG}
+
+# push branch to your your repo
+git push --set-upstream origin ${BRANCHNAME}
