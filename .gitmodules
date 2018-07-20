@@ -6,9 +6,9 @@
         path = indieweb-press-this
         url = https://github.com/dougbeal/indieweb-press-this.git
         branch = dougbeal
-[submodule "semantic-linkbacks"]
-        path = semantic-linkbacks
-        url = https://github.com/dougbeal/semantic-linkbacks.git
+[submodule "wordpress-semantic-linkbacks"]
+	path = wordpress-semantic-linkbacks
+	url = https://github.com/pfefferle/wordpress-semantic-linkbacks.git
         branch = dougbeal
 [submodule "simple-location"]
         path = simple-location
