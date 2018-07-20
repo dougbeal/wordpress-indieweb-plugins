@@ -3,8 +3,8 @@
         url = https://github.com/dougbeal/indieweb-post-kinds.git
         branch = dougbeal
 [submodule "indieweb-press-this"]
-        path = indieweb-press-this
-        url = https://github.com/dougbeal/indieweb-press-this.git
+	path = wordpress-indieweb-press-this
+	url = https://github.com/indieweb/wordpress-indieweb-press-this.git
         branch = dougbeal
 [submodule "wordpress-semantic-linkbacks"]
 	path = wordpress-semantic-linkbacks
