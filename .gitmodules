@@ -6,10 +6,10 @@
 	url = https://github.com/dshanske/indieweb-post-kinds.git
 [submodule "indieauth"]
 	path = wordpress-indieauth
-	url = https://github.com/indieweb/wordpress-indieauth
+	url = https://github.com/indieweb/wordpress-indieauth.git
 [submodule "indieweb-press-this"]
 	path = indieweb-press-this
-	url = https://github.com/indieweb/wordpress-indieweb-press-this
+	url = https://github.com/indieweb/wordpress-indieweb-press-this.git
 [submodule "micropub"]
 	path = wordpress-micropub
 	url = https://github.com/snarfed/wordpress-micropub.git
