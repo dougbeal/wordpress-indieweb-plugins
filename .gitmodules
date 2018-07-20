@@ -1,27 +1,36 @@
 [submodule "indieweb"]
 	path = indieweb
-	url = https://github.com/indieweb/wordpress-indieweb.git
+	url = https://github.com/dougbeal/indieweb.git
+	branch = dougbeal
 [submodule "indieweb-post-kinds"]
 	path = indieweb-post-kinds
-	url = https://github.com/dshanske/indieweb-post-kinds.git
+	url = https://github.com/dougbeal/indieweb-post-kinds.git
+	branch = dougbeal
 [submodule "indieauth"]
 	path = indieauth
-	url = https://github.com/indieweb/wordpress-indieauth
+	url = https://github.com/dougbeal/indieauth.git
+	branch = dougbeal
 [submodule "indieweb-press-this"]
 	path = indieweb-press-this
-	url = https://github.com/indieweb/wordpress-indieweb-press-this
+	url = https://github.com/dougbeal/indieweb-press-this.git
+	branch = dougbeal
 [submodule "micropub"]
 	path = micropub
-	url = https://github.com/snarfed/wordpress-micropub.git
+	url = https://github.com/dougbeal/micropub.git
+	branch = dougbeal
 [submodule "semantic-linkbacks"]
 	path = semantic-linkbacks
-	url = https://github.com/pfefferle/wordpress-semantic-linkbacks.git
+	url = https://github.com/dougbeal/semantic-linkbacks.git
+	branch = dougbeal
 [submodule "simple-location"]
 	path = simple-location
-	url = https://github.com/dshanske/simple-location.git
+	url = https://github.com/dougbeal/simple-location.git
+	branch = dougbeal
 [submodule "syndication-links"]
 	path = syndication-links
-	url = https://github.com/dshanske/syndication-links.git
+	url = https://github.com/dougbeal/syndication-links.git
+	branch = dougbeal
 [submodule "webmention"]
 	path = webmention
-	url = https://github.com/pfefferle/wordpress-webmention.git
+	url = https://github.com/dougbeal/webmention.git
+	branch = dougbeal
