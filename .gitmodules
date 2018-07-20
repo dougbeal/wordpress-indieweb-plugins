@@ -4,11 +4,11 @@
         branch = dougbeal
 [submodule "indieweb-press-this"]
 	path = wordpress-indieweb-press-this
-	url = https://github.com/indieweb/wordpress-indieweb-press-this.git
+	url = https://github.com/dougbeal/wordpress-indieweb-press-this.git
         branch = dougbeal
 [submodule "wordpress-semantic-linkbacks"]
 	path = wordpress-semantic-linkbacks
-	url = https://github.com/pfefferle/wordpress-semantic-linkbacks.git
+	url = https://github.com/dougbeal/wordpress-semantic-linkbacks.git
         branch = dougbeal
 [submodule "simple-location"]
         path = simple-location
