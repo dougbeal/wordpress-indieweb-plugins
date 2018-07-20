@@ -14,7 +14,7 @@
 	path = wordpress-micropub
 	url = https://github.com/snarfed/wordpress-micropub.git
 [submodule "semantic-linkbacks"]
-	path = semantic-linkbacks
+	path = wordpress-semantic-linkbacks
 	url = https://github.com/pfefferle/wordpress-semantic-linkbacks.git
 [submodule "simple-location"]
 	path = simple-location
