@@ -8,7 +8,7 @@
 	path = wordpress-indieauth
 	url = https://github.com/indieweb/wordpress-indieauth.git
 [submodule "indieweb-press-this"]
-	path = indieweb-press-this
+	path = wordpress-indieweb-press-this
 	url = https://github.com/indieweb/wordpress-indieweb-press-this.git
 [submodule "micropub"]
 	path = wordpress-micropub
