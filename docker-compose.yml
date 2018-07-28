@@ -1,0 +1,116 @@
+version: '2'
+services:
+  db:
+    image: mysql:5.7
+    volumes:
+      - "./.data/db:/var/lib/mysql"
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: wordpress
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+
+  webserver:
+    build: docker/wordpress-nginx
+    volumes:
+      - web:$WEB_ROOT
+      - indieweb-post-kinds:$WORDPRESS_PLUGINS/indieweb-post-kinds
+      - simple-location:$WORDPRESS_PLUGINS/simple-location
+      - syndication-links:$WORDPRESS_PLUGINS/syndication-links
+      - wordpress-indieauth:$WORDPRESS_PLUGINS/wordpress-indieauth
+      - wordpress-indieweb:$WORDPRESS_PLUGINS/wordpress-indieweb
+      - wordpress-indieweb-press-this:$WORDPRESS_PLUGINS/wordpress-indieweb-press-this
+      - wordpress-micropub:$WORDPRESS_PLUGINS/wordpress-micropub
+      - wordpress-semantic-linkbacks:$WORDPRESS_PLUGINS/wordpress-semantic-linkbacks
+      - wordpress-webmention:$WORDPRESS_PLUGINS/wordpress-webmention      
+    ports:
+      - 8000:80
+    environment:
+      NGINX_HOST: webserver
+      NGINX_PORT: 80
+      WORDPRESS_HOST: phpunit-wordpress
+    
+  phpunit-wordpress:
+    build: docker/wordpress-cli-phpunit-docker    
+    depends_on:
+      - db
+    links:
+      - db
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DEBUG: 1
+    volumes:
+      - wptests:/tmp
+      - web:$WEB_ROOT
+      - indieweb-post-kinds:$WORDPRESS_PLUGINS/indieweb-post-kinds
+      - simple-location:$WORDPRESS_PLUGINS/simple-location
+      - syndication-links:$WORDPRESS_PLUGINS/syndication-links
+      - wordpress-indieauth:$WORDPRESS_PLUGINS/wordpress-indieauth
+      - wordpress-indieweb:$WORDPRESS_PLUGINS/wordpress-indieweb
+      - wordpress-indieweb-press-this:$WORDPRESS_PLUGINS/wordpress-indieweb-press-this
+      - wordpress-micropub:$WORDPRESS_PLUGINS/wordpress-micropub
+      - wordpress-semantic-linkbacks:$WORDPRESS_PLUGINS/wordpress-semantic-linkbacks
+      - wordpress-webmention:$WORDPRESS_PLUGINS/wordpress-webmention
+    command: "php-fpm"
+
+
+volumes:
+    wptests: {}
+    web: {}
+    indieweb-post-kinds:
+      driver: local
+      driver_opts:
+        type: none
+        device: ${PWD}/indieweb-post-kinds
+        o: bind
+    simple-location:
+      driver: local
+      driver_opts:
+        type: none
+        device: ${PWD}/simple-location
+        o: bind
+    syndication-links:
+      driver: local
+      driver_opts:
+        type: none
+        device: ${PWD}/syndication-links
+        o: bind
+    wordpress-indieauth:
+      driver: local
+      driver_opts:
+        type: none
+        device: ${PWD}/wordpress-indieauth
+        o: bind
+    wordpress-indieweb:
+      driver: local
+      driver_opts:
+        type: none
+        device: ${PWD}/wordpress-indieweb
+        o: bind
+    wordpress-indieweb-press-this:
+      driver: local
+      driver_opts:
+        type: none
+        device: ${PWD}/wordpress-indieweb-press-this
+        o: bind
+    wordpress-micropub:
+      driver: local
+      driver_opts:
+        type: none
+        device: ${PWD}/wordpress-micropub
+        o: bind
+    wordpress-semantic-linkbacks:
+      driver: local
+      driver_opts:
+        type: none
+        device: ${PWD}/wordpress-semantic-linkbacks
+        o: bind
+    wordpress-webmention:
+      driver: local
+      driver_opts:
+        type: none
+        device: ${PWD}/wordpress-webmention
+        o: bind
