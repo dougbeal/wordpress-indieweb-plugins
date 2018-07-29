@@ -11,6 +11,57 @@ git config --global hub.protocol https
 
 ORG="" # set org here
 git clone --recursive https://github.com/dougbeal/wordpress-indieweb-plugins.git
+
+# upstream repos (upstream: canonical, origin: your repo, USERNAME: your repo) [no associative in bash 3]
+declare -a upstream_repos=(
+    wordpress-indieweb-plugins
+    indieweb-post-kinds
+    simple-location
+    syndication-links
+    wordpress-indieweb-press-this
+    wordpress-indieweb
+    wordpress-semantic-linkbacks
+    wordpress-webmention
+    wordpress-micropub
+)
+
+declare -a repo_directory=(
+    .
+    indieweb-post-kinds
+    simple-location
+    syndication-links
+    wordpress-indieweb-press-this
+    wordpress-indieweb
+    wordpress-semantic-linkbacks
+    wordpress-webmention
+    wordpress-micropub
+)
+
+declare -a upstream_usernames=(
+    dougbeal
+    dshanske
+    dshanske
+    dshanske
+    indieweb
+    indieweb
+    pfefferle
+    pfefferle
+    snarfed
+)
+
+
+for idx in "${!upstream_repos[@]}"; do
+    echo "$idx"
+    echo "repo ${upstream_repos[$idx]}"
+    echo "repo ${repo_directory[$idx]}"    
+    echo "user ${upstream_usernames[$idx]}"
+    (
+        cd ${repo_directory[$idx]}
+        git remote add upstream https://github.com/${upstream_usernames[$idx]}/${upstream_repos[$idx]}.git
+    )
+done
+
+
 hub fork ${ORG}
 
 ## create working branch (your github username?) ##
