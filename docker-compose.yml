@@ -2,7 +2,6 @@ version: '3.6'
 
 x-wp-plugins: &wp-plugins
   - web:$WEB_ROOT
-  - wptests:/tmp
   - simple-location:$WORDPRESS_PLUGINS/simple-location
   - syndication-links:$WORDPRESS_PLUGINS/syndication-links
   - wordpress-indieauth:$WORDPRESS_PLUGINS/wordpress-indieauth
@@ -71,7 +70,6 @@ services:
 
 
 volumes:
-    wptests: {}
     web: {}
     indieweb-post-kinds:
       << : *local-volume
