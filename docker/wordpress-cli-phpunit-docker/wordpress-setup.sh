@@ -1,4 +1,5 @@
 #!/bin/bash
+# add -x to prev line when things go wrong
 set -euo pipefail
 
 # usage: file_env VAR [DEFAULT]
@@ -23,7 +24,7 @@ file_env() {
 	unset "$fileVar"
 }
 
-if [[ "$1" == apache2* ]] || [ "$1" == php-fpm ]; then
+if [[ "\"$*\"" =~ apache2 ]] || [[ "\"$*\"" =~ php-fpm ]]; then
 	if [ "$(id -u)" = '0' ]; then
 		case "$1" in
 			apache2*)
@@ -241,4 +242,4 @@ EOPHP
 	done
 fi
 
-
+exec "$@"
