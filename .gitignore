@@ -1,18 +1,26 @@
 # ignore non-tracked plugins
 # https://stackoverflow.com/questions/1248570/how-do-i-tell-git-to-ignore-everything-except-a-subdirectory
-
 *
-!/bridy-publish
-!/indieauth
-!/indieweb
-!/indieweb-post-kinds
-!/indieweb-press-this
-!/micropub
-!/semantic-linkbacks
-!/simple-location
-!/syndication-links
-!/webmention
+
 !*.gitignore
 !*.gitmodule
+
+!/docker/
+!/docker/wordpress-nginx/
+!/docker/wordpress-cli-phpunit-docker/
+!docker-compose.yml
+!.env
 !README.md
+
+!/bridy-publish/
+!/indieweb-post-kinds/
+!/simple-location/
+!/syndication-links/
+!/wordpress-indieauth/
+!/wordpress-indieweb/
+!/wordpress-indieweb-press-this/
+!/wordpress-micropub/
+!/wordpress-semantic-linkbacks/
+!/wordpress-webmention/
+
 

@@ -1,0 +1,118 @@
+version: '3.6'
+
+x-wp-plugins: &wp-plugins
+  - web:$WEB_ROOT
+  - simple-location:$WORDPRESS_PLUGINS/simple-location
+  - syndication-links:$WORDPRESS_PLUGINS/syndication-links
+  - wordpress-indieauth:$WORDPRESS_PLUGINS/wordpress-indieauth
+  - wordpress-indieweb-press-this:$WORDPRESS_PLUGINS/wordpress-indieweb-press-this
+  - wordpress-indieweb:$WORDPRESS_PLUGINS/wordpress-indieweb
+  - wordpress-micropub:$WORDPRESS_PLUGINS/wordpress-micropub
+  - wordpress-semantic-linkbacks:$WORDPRESS_PLUGINS/wordpress-semantic-linkbacks
+  - wordpress-webmention:$WORDPRESS_PLUGINS/wordpress-webmention
+  - indieweb-post-kinds:$WORDPRESS_PLUGINS/indieweb-post-kinds
+
+x-wp-config: &wp-config
+  WORDPRESS_PATH: ${WEB_ROOT}
+  WORDPRESS_DB_HOST: "$DATABASE_HOST:$DATABASE_PORT"
+  WORDPRESS_DB_NAME: wordpress
+  WORDPRESS_DB_USER: wordpress
+  WORDPRESS_DB_PASSWORD: wordpress
+  WORDPRESS_DEBUG: 1
+
+x-local-volume: &local-volume
+  driver: local
+
+x-local-driver: &local-driver
+  type: none
+  o: bind
+
+services:
+  db:
+    image: mysql:5.7
+    volumes:
+      - "./.data/db:/var/lib/mysql"
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: wordpress
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+
+  webserver:
+    build: docker/wordpress-nginx
+    depends_on:
+      - wordpress
+    links:
+      - wordpress
+    volumes: *wp-plugins
+    ports:
+      - 8000:80
+    environment:
+      NGINX_HOST: webserver
+      NGINX_PORT: 80
+      WORDPRESS_HOST: phpunit-wordpress
+
+  wordpress:
+    build:
+      context: docker/wordpress-cli-phpunit-docker
+      args: *wp-config
+    depends_on:
+      - db
+    links:
+      - db
+    restart: always
+    environment: *wp-config
+    volumes: *wp-plugins
+
+
+    command: "wait-for ${DATABASE_HOST}:${DATABASE_PORT} -- php-fpm"
+
+
+volumes:
+    web: {}
+    indieweb-post-kinds:
+      << : *local-volume
+      driver_opts:
+        << : *local-driver
+        device: ${PWD}/indieweb-post-kinds
+    simple-location:
+      << : *local-volume
+      driver_opts:
+        << : *local-driver
+        device: ${PWD}/simple-location
+    syndication-links:
+      << : *local-volume
+      driver_opts:
+        << : *local-driver
+        device: ${PWD}/syndication-links
+    wordpress-indieauth:
+      << : *local-volume
+      driver_opts:
+        << : *local-driver
+        device: ${PWD}/wordpress-indieauth
+    wordpress-indieweb:
+      << : *local-volume
+      driver_opts:
+        << : *local-driver
+        device: ${PWD}/wordpress-indieweb
+    wordpress-indieweb-press-this:
+      << : *local-volume
+      driver_opts:
+        << : *local-driver
+        device: ${PWD}/wordpress-indieweb-press-this
+    wordpress-micropub:
+      << : *local-volume
+      driver_opts:
+        << : *local-driver
+        device: ${PWD}/wordpress-micropub
+    wordpress-semantic-linkbacks:
+      << : *local-volume
+      driver_opts:
+        << : *local-driver
+        device: ${PWD}/wordpress-semantic-linkbacks
+    wordpress-webmention:
+      << : *local-volume
+      driver_opts:
+        << : *local-driver
+        device: ${PWD}/wordpress-webmention
