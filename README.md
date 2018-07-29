@@ -10,7 +10,7 @@ git config --global hub.protocol https
 ## clone and fork https://github.com/dougbeal/wordpress-indieweb-plugins.git ##
 
 ORG="" # set org here
-git clone https://github.com/dougbeal/wordpress-indieweb-plugins.git
+git clone --recursive https://github.com/dougbeal/wordpress-indieweb-plugins.git
 hub fork ${ORG}
 
 ## create working branch (your github username?) ##
