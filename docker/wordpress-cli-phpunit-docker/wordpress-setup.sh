@@ -236,10 +236,16 @@ $mysql->close();
 EOPHP
 	fi
 
-	# now that we're definitely done writing configuration, let's clear out the relevant envrionment variables (so that stray "phpinfo()" calls don't leak secrets from our code)
-	for e in "${envs[@]}"; do
-		unset "$e"
-	done
+
+        wp --allow-root core install --url="http://localhost:8000" --title="PhpUnitWordPress" --admin_user=admin --admin_password=test --admin_email="test_wp@localhost" --skip-email
+
 fi
+
+install-wp-tests.sh ${WORDPRESS_DB_NAME}_test root ${WORDPRESS_DB_PASSWORD} ${WORDPRESS_DB_HOST}
+
+# now that we're definitely done writing configuration, let's clear out the relevant envrionment variables (so that stray "phpinfo()" calls don't leak secrets from our code)
+for e in "${envs[@]}"; do
+    unset "$e"
+done
 
 exec "$@"
