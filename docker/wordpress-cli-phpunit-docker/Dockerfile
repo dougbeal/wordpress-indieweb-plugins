@@ -50,7 +50,7 @@ RUN php -r "copy('https://pear.php.net/go-pear.phar', 'go-pear.phar');" \
 
 COPY --from=composer:1.5 /usr/bin/composer /usr/bin/composer
 
-RUN composer require --dev phpunit/phpunit ^7 --prefer-source --no-interaction
+RUN composer require --dev "phpunit/phpunit:<7.0" --prefer-source --no-interaction
 #RUN composer require "phpunit/phpunit:~6.5.3" --prefer-source --no-interaction
 RUN composer require "phpunit/php-invoker" --prefer-source --no-interaction
 
@@ -77,17 +77,37 @@ FROM wordpress:php7.2-fpm-alpine AS wordpress
 
 RUN apk --no-cache add less
 COPY ./wordpress-setup.sh /usr/local/bin/wordpress-setup.sh
-RUN /usr/local/bin/wordpress-setup.sh php-fpm
-RUN ln -s /tmp/vendor/bin/phpunit /usr/local/bin/phpunit
+COPY ./install-wp-tests.sh /usr/local/bin/install-wp-tests.sh
 
-COPY --from=wordpress /var/www/html /usr/share/nginx/html
-COPY --from=wordpress-cli /usr/local/bin/wp /usr/local/bin/wp
-COPY --from=wordpress /var/www/html /var/www/html
+RUN ln -s /tmp/vendor/bin/phpunit /usr/local/bin/phpunit
+COPY wait-for /usr/local/bin/
+
 COPY --from=phpunit /etc/php7 /etc/php7
 COPY --from=phpunit /tmp/vendor /tmp/vendor
 COPY --from=phpunit /usr/lib/php7 /usr/lib/php7
+COPY --from=phpunit /usr/lib/libpcre* /usr/lib/
+COPY --from=phpunit /usr/local/etc/php/ /usr/local/etc/php/
+COPY --from=phpunit /usr/local/lib/php/ /usr/local/lib/php/
+COPY --from=phpunit /usr/bin/git* /usr/bin/
+COPY --from=phpunit /usr/libexec/git-core/ /usr/libexec/git-core
+COPY --from=phpunit /usr/share/git-core/ /usr/share/git-core
 
-# Set up the command arguments.
-ENTRYPOINT ["wp"]
-CMD ["--allow-root"]
+COPY --from=wordpress-cli /usr/local/bin/wp /usr/local/bin/wp
+COPY --from=wordpress-cli /etc/mysql* /etc/
+COPY --from=wordpress-cli /usr/bin/mysql* /usr/bin/
+COPY --from=wordpress-cli /usr/share/mysql* /user/share/
 
+
+COPY --from=wordpress /usr/src/wordpress/ /usr/share/nginx/html/
+COPY --from=wordpress /var/www/html /var/www/html
+
+
+WORKDIR ${WORDPRESS_PATH:-/usr/share/nginx/html}
+# RUN /usr/local/bin/wordpress-setup.sh php-fpm
+# RUN wp --allow-root config create --dbname=${WORDPRESS_DB_NAME} \
+#     --dbuser=${WORDPRESS_DB_USER} \
+#     --dbhost=${WORDPRESS_DB_HOST} \
+#     --dbpass=${WORDPRESS_DB_PASSWORD}
+# RUN wp --allow-root core install --url="http://localhost:8000" --title="PhpUnitWordPress" --admin_user=admin --admin_password=test --admin_email="test_wp@dougbeal.com" --skip-email
+
+ENTRYPOINT ["wordpress-setup.sh"]

@@ -14,7 +14,7 @@ x-wp-plugins: &wp-plugins
 
 x-wp-config: &wp-config
   WORDPRESS_PATH: ${WEB_ROOT}
-  WORDPRESS_DB_HOST: $DATABASE_HOST:$DATABASE_PORT
+  WORDPRESS_DB_HOST: "$DATABASE_HOST:$DATABASE_PORT"
   WORDPRESS_DB_NAME: wordpress
   WORDPRESS_DB_USER: wordpress
   WORDPRESS_DB_PASSWORD: wordpress
