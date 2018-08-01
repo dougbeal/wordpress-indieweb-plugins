@@ -12,52 +12,44 @@ git config --global hub.protocol https
 ORG="" # set org here
 git clone --recursive https://github.com/dougbeal/wordpress-indieweb-plugins.git
 
-# upstream repos (upstream: canonical, origin: your repo, USERNAME: your repo) [no associative in bash 3]
-declare -a upstream_repos=(
-    wordpress-indieweb-plugins
-    indieweb-post-kinds
-    simple-location
-    syndication-links
-    wordpress-indieweb-press-this
-    wordpress-indieweb
-    wordpress-semantic-linkbacks
-    wordpress-webmention
-    wordpress-micropub
-)
+# # A pretend Python dictionary with bash 3
+# ARRAY=( "cow:moo"
+#         "dinosaur:roar"
+#         "bird:chirp"
+#         "bash:rock" )
 
-declare -a repo_directory=(
-    .
-    indieweb-post-kinds
-    simple-location
-    syndication-links
-    wordpress-indieweb-press-this
-    wordpress-indieweb
-    wordpress-semantic-linkbacks
-    wordpress-webmention
-    wordpress-micropub
-)
+# for animal in "${ARRAY[@]}" ; do
+#     KEY=${animal%%:*}
+#     VALUE=${animal#*:}
+#     printf "%s likes to %s.\n" "$KEY" "$VALUE"
+# done
 
-declare -a upstream_usernames=(
-    dougbeal
-    dshanske
-    dshanske
-    dshanske
-    indieweb
-    indieweb
-    pfefferle
-    pfefferle
-    snarfed
+# echo -e "${ARRAY[1]%%:*} is an extinct animal which likes to ${ARRAY[1]#*:}\n"
+
+repos=(  # fake associative array for bash3
+    "wordpress-indieweb-plugins:.:dougbeal"
+    "indieweb-post-kinds:indieweb-post-kinds:dshanske"
+    "simple-location:simple-location:dshanske"
+    "syndication-links:syndication-links:dshanske"
+    "wordpress-indieauth:wordpress-indieauth:indieweb"
+    "wordpress-indieweb:wordpress-indieweb:indieweb"
+    "wordpress-indieweb-press-this:wordpress-indieweb-press-this:indieweb"
+    "wordpress-micropub:wordpress-micropub:pfefferle"
+    "wordpress-semantic-linkbacks:wordpress-semantic-linkbacks:pfefferle"
+    "wordpress-webmention:wordpress-webmention:snarfed"
 )
 
 
-for idx in "${!upstream_repos[@]}"; do
-    echo "$idx"
-    echo "repo ${upstream_repos[$idx]}"
-    echo "repo ${repo_directory[$idx]}"    
-    echo "user ${upstream_usernames[$idx]}"
+for idx in "${!repos[@]}"; do
+    echo "$idx repo ${upstream_repos[$idx]} repo ${repo_directory[$idx]} user ${upstream_usernames[$idx]}"
     (
-        cd ${repo_directory[$idx]}
-        git remote add upstream https://github.com/${upstream_usernames[$idx]}/${upstream_repos[$idx]}.git
+        str="${repos[$idx]}"
+        upstream_repo=${str%%:*}
+        repo_dir=${str%:*}
+        repo_dir=${repo_dir##*:}
+        upstream_username=${str##*:}
+        cd ${repo_dir}
+        git remote add upstream https://github.com/${upstream_username}/${upstream_repo}.git
     )
 done
 
@@ -98,3 +90,7 @@ git submodule foreach hub sync
 git submodule foreach git merge origin/master
 
 git submodule foreach git push -u ${GIT_BRANCHNAME} ${GIT_BRANCHNAME}
+
+
+# run tests
+docker exec iwwp-plugins_wordpress_1 bash -c "find \${WORDPRESS_PATH} -maxdepth 5 -name phpunit.xml\* -print -exec  phpunit  --config {} \;" > test.report
