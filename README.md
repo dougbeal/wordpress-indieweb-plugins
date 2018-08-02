@@ -48,11 +48,22 @@ for idx in "${!repos[@]}"; do
         repo_dir=${str%:*}
         repo_dir=${repo_dir##*:}
         upstream_username=${str##*:}
-        cd ${repo_dir}
-        git remote add upstream https://github.com/${upstream_username}/${upstream_repo}.git
+        (
+            cd ${repo_dir}
+            git remote add upstream https://github.com/${upstream_username}/${upstream_repo}.git
+            git remote set-url upstream https://github.com/${upstream_username}/${upstream_repo}.git
+            
+        )
+        if [ "${repo_dir}" -ne "." ]; then
+            git config --file=.gitmodules submodule.${upstream_repo}.url https://github.com/${username_upstream}/${upstream_repo}.git
+        fi        
+        
     )
 done
-
+# git config --file=.gitmodules submodule.Submod.url https://github.com/username/ABC.git
+# git config --file=.gitmodules submodule.Submod.branch Development
+# git submodule sync
+# git submodule update --init --recursive --remote
 
 hub fork ${ORG}
 
@@ -94,3 +105,23 @@ git submodule foreach git push -u ${GIT_BRANCHNAME} ${GIT_BRANCHNAME}
 
 # run tests
 docker exec iwwp-plugins_wordpress_1 bash -c "find \${WORDPRESS_PATH} -maxdepth 5 -name phpunit.xml\* -print -exec  phpunit  --config {} \;" > test.report
+
+
+# for wordpress-indieweb-plugins/master, point submodules at upstream/master
+use name upsream-master to avoid conflict with origin/master
+```
+# will fail if upstream-master already exists, so do || true
+git submodule foreach bash -c "git fetch upstream && git checkout -b upstream-master upstream/master || true"
+
+# verify that the repos are set correctly
+git submodule foreach git branch -v
+```
+
+# helpful config 
+```
+#  show the submodule log when you dif
+git config --global diff.submodule log
+
+# short summary of submodule changes in your status message:
+git config status.submoduleSummary true
+```
