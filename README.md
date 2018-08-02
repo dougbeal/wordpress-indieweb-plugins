@@ -79,6 +79,8 @@ for submodule in $(git submodule | gawk '{print $2}'); do
     git config --file=.gitmodules submodule.${submodule}.branch ${GIT_BRANCHNAME}
 done
 
+## check if everything looks right
+git branch -var; git submodule foreach git branch -var
 ## push branch to your your repo ##
 
 git push --set-upstream origin ${GIT_BRANCHNAME}
