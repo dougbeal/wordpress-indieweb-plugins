@@ -3,29 +3,20 @@
 # setup
 
 ## install https://github.com/github/hub ##
-
+```
+brew install hub
+```
 ## make it use https vs ssh
+```
 git config --global hub.protocol https
-
+```
 ## clone and fork https://github.com/dougbeal/wordpress-indieweb-plugins.git ##
 
 ORG="" # set org here
-git clone --recursive https://github.com/dougbeal/wordpress-indieweb-plugins.git
+git clone --recursive-submodules https://github.com/dougbeal/wordpress-indieweb-plugins.git
 
-# # A pretend Python dictionary with bash 3
-# ARRAY=( "cow:moo"
-#         "dinosaur:roar"
-#         "bird:chirp"
-#         "bash:rock" )
-
-# for animal in "${ARRAY[@]}" ; do
-#     KEY=${animal%%:*}
-#     VALUE=${animal#*:}
-#     printf "%s likes to %s.\n" "$KEY" "$VALUE"
-# done
-
-# echo -e "${ARRAY[1]%%:*} is an extinct animal which likes to ${ARRAY[1]#*:}\n"
-
+set -x
+set -uo pipefail
 repos=(  # fake associative array for bash3
     "wordpress-indieweb-plugins:.:dougbeal"
     "indieweb-post-kinds:indieweb-post-kinds:dshanske"
@@ -41,29 +32,29 @@ repos=(  # fake associative array for bash3
 
 
 for idx in "${!repos[@]}"; do
-    echo "$idx repo ${upstream_repos[$idx]} repo ${repo_directory[$idx]} user ${upstream_usernames[$idx]}"
+    str="${repos[$idx]}"
+    upstream_repo=${str%%:*}
+    repo_dir=${str%:*}
+    repo_dir=${repo_dir##*:}
+    upstream_username=${str##*:}
+    echo "$idx ${upstream_repo} dir ${repo_dir} user ${upstream_username}"
     (
-        str="${repos[$idx]}"
-        upstream_repo=${str%%:*}
-        repo_dir=${str%:*}
-        repo_dir=${repo_dir##*:}
-        upstream_username=${str##*:}
-        (
-            cd ${repo_dir}
-            git remote add upstream https://github.com/${upstream_username}/${upstream_repo}.git
-            git remote set-url upstream https://github.com/${upstream_username}/${upstream_repo}.git
-            
-        )
-        if [ "${repo_dir}" -ne "." ]; then
-            git config --file=.gitmodules submodule.${upstream_repo}.url https://github.com/${username_upstream}/${upstream_repo}.git
-        fi        
+        cd ${repo_dir}
+        git remote -v | grep -q "upstream"
+        if [ $? -ne 0 ]; then
+            git remote add upstream https://github.com/${upstream_username}/${upstream_repo}.git 
+            #git remote set-url upstream https://github.com/${upstream_username}/${upstream_repo}.git
+        fi
         
     )
+    if [ "${repo_dir}" != "." ]; then
+        git config --file=.gitmodules submodule.${upstream_repo}.url | grep -q "${upstream_username}"
+        if [ $? -ne 0 ]; then
+            echo "fixing .gitmodule submoduel url for ${upstream_repo}"
+            git config --file=.gitmodules submodule.${upstream_repo}.url https://github.com/${upstream_username}/${upstream_repo}.git
+        fi
+    fi        
 done
-# git config --file=.gitmodules submodule.Submod.url https://github.com/username/ABC.git
-# git config --file=.gitmodules submodule.Submod.branch Development
-# git submodule sync
-# git submodule update --init --recursive --remote
 
 hub fork ${ORG}
 
