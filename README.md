@@ -13,7 +13,7 @@ git config --global hub.protocol https
 ## clone and fork https://github.com/dougbeal/wordpress-indieweb-plugins.git ##
 
 ORG="" # set org here
-git clone --recursive-submodules https://github.com/dougbeal/wordpress-indieweb-plugins.git
+git clone --recurse-submodules https://github.com/dougbeal/wordpress-indieweb-plugins.git
 
 set -x
 set -uo pipefail
