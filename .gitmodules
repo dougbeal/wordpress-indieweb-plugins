@@ -20,7 +20,7 @@
         branch = master
 [submodule "wordpress-webmention"]
         path = wordpress-webmention
-	url = https://github.com/snarfed/wordpress-webmention.git
+	url = https://github.com/pfefferle/wordpress-webmention.git
         branch = master
 [submodule "wordpress-indieauth"]
         path = "wordpress-indieauth"
@@ -32,7 +32,7 @@
         branch = master
 [submodule "wordpress-micropub"]
         path = "wordpress-micropub"
-	url = https://github.com/pfefferle/wordpress-micropub.git
+	url = https://github.com/snarfed/wordpress-micropub.git
         branch = master
 
 
