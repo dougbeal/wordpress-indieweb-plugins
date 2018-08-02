@@ -25,9 +25,9 @@ repos=(  # fake associative array for bash3
     "wordpress-indieauth:wordpress-indieauth:indieweb"
     "wordpress-indieweb:wordpress-indieweb:indieweb"
     "wordpress-indieweb-press-this:wordpress-indieweb-press-this:indieweb"
-    "wordpress-micropub:wordpress-micropub:pfefferle"
+    "wordpress-micropub:wordpress-micropub:snarfed"
     "wordpress-semantic-linkbacks:wordpress-semantic-linkbacks:pfefferle"
-    "wordpress-webmention:wordpress-webmention:snarfed"
+    "wordpress-webmention:wordpress-webmention:pfefferle"
 )
 
 
