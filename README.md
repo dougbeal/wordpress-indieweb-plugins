@@ -15,6 +15,9 @@ git config --global hub.protocol https
 ORG="" # set org here
 git clone --recurse-submodules https://github.com/dougbeal/wordpress-indieweb-plugins.git
 
+# if you forget the --recurse-submodules, then
+# git submodule update --init
+
 set -x
 set -uo pipefail
 repos=(  # fake associative array for bash3
