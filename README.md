@@ -50,7 +50,7 @@ for idx in "${!repos[@]}"; do
     if [ "${repo_dir}" != "." ]; then
         git config --file=.gitmodules submodule.${upstream_repo}.url | grep -q "${upstream_username}"
         if [ $? -ne 0 ]; then
-            echo "fixing .gitmodule submoduel url for ${upstream_repo}"
+            echo "fixing .gitmodule submodule. url for ${upstream_repo}"
             git config --file=.gitmodules submodule.${upstream_repo}.url https://github.com/${upstream_username}/${upstream_repo}.git
         fi
     fi        
