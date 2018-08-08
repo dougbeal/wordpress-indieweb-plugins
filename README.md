@@ -67,7 +67,7 @@ git checkout -b ${GIT_BRANCHNAME} || git checkout ${GIT_BRANCHNAME} # checkout a
 
 git submodule foreach hub fork ${ORG}
 
-git submodule foreach git checkout -b ${GIT_BRANCHNAME}
+git submodule foreach git checkout -b ${GIT_BRANCHNAME} || git submodule foreach git checkout ${GIT_BRANCHNAME}
 git submodule foreach git push --set-upstream origin ${GIT_BRANCHNAME}
 
 ## update submodule to point to user's fork, and branch to user's new branchrepo to point to users and new branch
