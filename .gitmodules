@@ -34,3 +34,7 @@
         path = "wordpress-micropub"
         url = https://github.com/dougbeal/wordpress-micropub.git
         branch = dougbeal
+[submodule "wordpress-indieweb-press-this"]
+        path = wordpress-indieweb-press-this
+        url = https://github.com/dougbeal/wordpress-indieweb-press-this.git
+        branch = dougbeal
