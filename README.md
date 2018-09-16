@@ -13,21 +13,25 @@ git config --global hub.protocol https
 ## clone and fork https://github.com/dougbeal/wordpress-indieweb-plugins.git ##
 
 ORG="" # set org here
-git clone --recursive-submodules https://github.com/dougbeal/wordpress-indieweb-plugins.git
+git clone --recurse-submodules https://github.com/dougbeal/wordpress-indieweb-plugins.git
+
+# if you forget the --recurse-submodules, then
+# git submodule update --init
 
 set -x
 set -uo pipefail
+# repo-name    wordpress-name(svn repo)   github-account
 repos=(  # fake associative array for bash3
     "wordpress-indieweb-plugins:.:dougbeal"
     "indieweb-post-kinds:indieweb-post-kinds:dshanske"
     "simple-location:simple-location:dshanske"
     "syndication-links:syndication-links:dshanske"
-    "wordpress-indieauth:wordpress-indieauth:indieweb"
-    "wordpress-indieweb:wordpress-indieweb:indieweb"
-    "wordpress-indieweb-press-this:wordpress-indieweb-press-this:indieweb"
-    "wordpress-micropub:wordpress-micropub:snarfed"
-    "wordpress-semantic-linkbacks:wordpress-semantic-linkbacks:pfefferle"
-    "wordpress-webmention:wordpress-webmention:pfefferle"
+    "wordpress-indieauth:indieauth:indieweb"
+    "wordpress-indieweb:indieweb:indieweb"
+    "wordpress-indieweb-press-this:indieweb-press-this:indieweb"
+    "wordpress-micropub:micropub:indieweb"
+    "wordpress-semantic-linkbacks:semantic-linkbacks:pfefferle"
+    "wordpress-webmention:webmention:pfefferle"
 )
 
 

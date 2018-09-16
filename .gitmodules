@@ -1,40 +1,38 @@
 [submodule "indieweb-post-kinds"]
         path = indieweb-post-kinds
-        url = https://github.com/dougbeal/indieweb-post-kinds.git
+	url = https://github.com/dougbeal/indieweb-post-kinds.git
         branch = dougbeal
-[submodule "indieweb-press-this"]
-	path = wordpress-indieweb-press-this
+[submodule "wordpress-indieweb-press-this"]        
+	path = indieweb-press-this
 	url = https://github.com/dougbeal/wordpress-indieweb-press-this.git
         branch = dougbeal
 [submodule "wordpress-semantic-linkbacks"]
-	path = wordpress-semantic-linkbacks
+	path = semantic-linkbacks
 	url = https://github.com/dougbeal/wordpress-semantic-linkbacks.git
         branch = dougbeal
 [submodule "simple-location"]
         path = simple-location
-        url = https://github.com/dougbeal/simple-location.git
+	url = https://github.com/dougbeal/simple-location.git
         branch = dougbeal
 [submodule "syndication-links"]
         path = syndication-links
-        url = https://github.com/dougbeal/syndication-links.git
+	url = https://github.com/dougbeal/syndication-links.git
         branch = dougbeal
 [submodule "wordpress-webmention"]
-        path = wordpress-webmention
-        url = https://github.com/dougbeal/wordpress-webmention.git
+        path = webmention
+	url = https://github.com/dougbeal/wordpress-webmention.git
         branch = dougbeal
 [submodule "wordpress-indieauth"]
-        path = "wordpress-indieauth"
-        url = https://github.com/dougbeal/wordpress-indieauth.git
+        path = "indieauth"
+	url = https://github.com/dougbeal/wordpress-indieauth.git
         branch = dougbeal
 [submodule "wordpress-indieweb"]
-        path = "wordpress-indieweb"
-        url = https://github.com/dougbeal/wordpress-indieweb.git
+        path = "indieweb"
+	url = https://github.com/dougbeal/wordpress-indieweb.git
         branch = dougbeal
 [submodule "wordpress-micropub"]
-        path = "wordpress-micropub"
-        url = https://github.com/dougbeal/wordpress-micropub.git
+        path = "micropub"
+	url = https://github.com/dougbeal/wordpress-micropub.git
         branch = dougbeal
-[submodule "wordpress-indieweb-press-this"]
-        path = wordpress-indieweb-press-this
-        url = https://github.com/dougbeal/wordpress-indieweb-press-this.git
-        branch = dougbeal
+
+
