@@ -32,7 +32,7 @@
         branch = master
 [submodule "wordpress-micropub"]
         path = "micropub"
-	url = https://github.com/snarfed/wordpress-micropub.git
+	url = https://github.com/indieweb/wordpress-micropub.git
         branch = master
 
 
