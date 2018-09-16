@@ -3,11 +3,11 @@
 	url = https://github.com/dshanske/indieweb-post-kinds.git
         branch = master
 [submodule "wordpress-indieweb-press-this"]        
-	path = wordpress-indieweb-press-this
+	path = indieweb-press-this
 	url = https://github.com/indieweb/wordpress-indieweb-press-this.git
         branch = master
 [submodule "wordpress-semantic-linkbacks"]
-	path = wordpress-semantic-linkbacks
+	path = semantic-linkbacks
 	url = https://github.com/pfefferle/wordpress-semantic-linkbacks.git
         branch = master
 [submodule "simple-location"]
@@ -19,19 +19,19 @@
 	url = https://github.com/dshanske/syndication-links.git
         branch = master
 [submodule "wordpress-webmention"]
-        path = wordpress-webmention
+        path = webmention
 	url = https://github.com/pfefferle/wordpress-webmention.git
         branch = master
 [submodule "wordpress-indieauth"]
-        path = "wordpress-indieauth"
+        path = "indieauth"
 	url = https://github.com/indieweb/wordpress-indieauth.git
         branch = master
 [submodule "wordpress-indieweb"]
-        path = "wordpress-indieweb"
+        path = "indieweb"
 	url = https://github.com/indieweb/wordpress-indieweb.git
         branch = master
 [submodule "wordpress-micropub"]
-        path = "wordpress-micropub"
+        path = "micropub"
 	url = https://github.com/snarfed/wordpress-micropub.git
         branch = master
 
