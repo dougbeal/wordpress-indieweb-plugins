@@ -1,7 +1,7 @@
 [submodule "indieweb-post-kinds"]
         path = indieweb-post-kinds
 	url = https://github.com/dougbeal/indieweb-post-kinds.git
-        branch = dougbeal
+	branch = dougbeal
 [submodule "wordpress-indieweb-press-this"]        
 	path = indieweb-press-this
 	url = https://github.com/dougbeal/wordpress-indieweb-press-this.git
@@ -13,11 +13,11 @@
 [submodule "simple-location"]
         path = simple-location
 	url = https://github.com/dougbeal/simple-location.git
-        branch = dougbeal
+	branch = dougbeal
 [submodule "syndication-links"]
         path = syndication-links
 	url = https://github.com/dougbeal/syndication-links.git
-        branch = dougbeal
+	branch = dougbeal
 [submodule "wordpress-webmention"]
         path = webmention
 	url = https://github.com/dougbeal/wordpress-webmention.git
