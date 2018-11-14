@@ -60,19 +60,21 @@ for idx in "${!repos[@]}"; do
     fi        
 done
 
-hub fork ${ORG}
-
 ## create working branch (your github username?) ##
 GITHUB_USER=${GITHUB_USER:-$USER}
 GIT_BRANCHNAME=${USER:-"my-working-branch"}
-git checkout -b ${GIT_BRANCHNAME} || git checkout ${GIT_BRANCHNAME} # checkout and create, or checkout if it already exists
+
+hub fork ${ORG} || git checkout ${GIT_BRANCHNAME} 
+
+git checkout -tb ${GIT_BRANCHNAME} # checkout and create, or checkout if it already exists
 
 ## fork each indieweb plugin to your account ##
 
 git submodule foreach hub fork ${ORG}
+git submodule foreach git fetch --all
 
-git submodule foreach git checkout -b ${GIT_BRANCHNAME}
-git submodule foreach git push --set-upstream origin ${GIT_BRANCHNAME}
+# checkout and create and push, or checkout if it already exists
+git submodule foreach "(git checkout -b ${GIT_BRANCHNAME} && git push --set-upstream origin ${GIT_BRANCHNAME}) || git checkout ${GIT_BRANCHNAME}"
 
 ## update submodule to point to user's fork, and branch to user's new branchrepo to point to users and new branch
 for submodule in $(git submodule | gawk '{print $2}'); do
@@ -84,7 +86,6 @@ for submodule in $(git submodule | gawk '{print $2}'); do
 done
 
 ## push branch to your your repo ##
-
 git push --set-upstream origin ${GIT_BRANCHNAME}
 
 # update your branch to upstream
