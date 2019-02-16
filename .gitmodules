@@ -1,7 +1,7 @@
 [submodule "indieweb-post-kinds"]
         path = indieweb-post-kinds
-	url = https://github.com/dshanske/indieweb-post-kinds.git
-        branch = master
+	url = https://github.com/dougbeal/indieweb-post-kinds.git
+	branch = dougbeal
 [submodule "wordpress-indieweb-press-this"]        
 	path = indieweb-press-this
 	url = https://github.com/indieweb/wordpress-indieweb-press-this.git
@@ -12,12 +12,12 @@
         branch = master
 [submodule "simple-location"]
         path = simple-location
-	url = https://github.com/dshanske/simple-location.git
-        branch = master
+	url = https://github.com/dougbeal/simple-location.git
+	branch = dougbeal
 [submodule "syndication-links"]
         path = syndication-links
-	url = https://github.com/dshanske/syndication-links.git
-        branch = master
+	url = https://github.com/dougbeal/syndication-links.git
+	branch = dougbeal
 [submodule "wordpress-webmention"]
         path = webmention
 	url = https://github.com/pfefferle/wordpress-webmention.git
@@ -36,3 +36,21 @@
         branch = master
 
 
+[submodule "indieauth"]
+	url = https://github.com/dougbeal/indieauth.git
+	branch = dougbeal
+[submodule "indieweb"]
+	url = https://github.com/dougbeal/indieweb.git
+	branch = dougbeal
+[submodule "indieweb-press-this"]
+	url = https://github.com/dougbeal/indieweb-press-this.git
+	branch = dougbeal
+[submodule "micropub"]
+	url = https://github.com/dougbeal/micropub.git
+	branch = dougbeal
+[submodule "semantic-linkbacks"]
+	url = https://github.com/dougbeal/semantic-linkbacks.git
+	branch = dougbeal
+[submodule "webmention"]
+	url = https://github.com/dougbeal/webmention.git
+	branch = dougbeal
