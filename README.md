@@ -54,7 +54,7 @@ for idx in "${!repos[@]}"; do
     if [ "${repo_dir}" != "." ]; then
         git config --file=.gitmodules submodule.${upstream_repo}.url | grep -q "${upstream_username}"
         if [ $? -ne 0 ]; then
-            echo "fixing .gitmodule submoduel url for ${upstream_repo}"
+            echo "fixing .gitmodule submodule. url for ${upstream_repo}"
             git config --file=.gitmodules submodule.${upstream_repo}.url https://github.com/${upstream_username}/${upstream_repo}.git
         fi
     fi        
@@ -73,8 +73,8 @@ git checkout -tb ${GIT_BRANCHNAME} # checkout and create, or checkout if it alre
 git submodule foreach hub fork ${ORG}
 git submodule foreach git fetch --all
 
-# checkout and create and push, or checkout if it already exists
-git submodule foreach "(git checkout -b ${GIT_BRANCHNAME} && git push --set-upstream origin ${GIT_BRANCHNAME}) || git checkout ${GIT_BRANCHNAME}"
+git submodule foreach git checkout -b ${GIT_BRANCHNAME} || git submodule foreach git checkout ${GIT_BRANCHNAME}
+git submodule foreach git push --set-upstream origin ${GIT_BRANCHNAME}
 
 ## update submodule to point to user's fork, and branch to user's new branchrepo to point to users and new branch
 for submodule in $(git submodule | gawk '{print $2}'); do
@@ -85,6 +85,8 @@ for submodule in $(git submodule | gawk '{print $2}'); do
     git config --file=.gitmodules submodule.${submodule}.branch ${GIT_BRANCHNAME}
 done
 
+## check if everything looks right
+git branch -var; git submodule foreach git branch -var
 ## push branch to your your repo ##
 git push --set-upstream origin ${GIT_BRANCHNAME}
 
